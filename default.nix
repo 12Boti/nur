@@ -15,5 +15,6 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   bs = pkgs.callPackage ./pkgs/bs { };
+  examdown = pkgs.callPackage ./pkgs/examdown { };
   pcalc = pkgs.callPackage ./pkgs/pcalc { };
 }
