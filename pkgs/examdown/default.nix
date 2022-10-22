@@ -30,7 +30,7 @@ let
         buildPhase = ''
           patchShebangs .
           sed -i 's/cmark/cmark-gfm/g' src/examdown.sh
-          sed -i "s|wkhtmltopdf|wkhtmltopdf --allow $out|g" src/examdown.sh
+          sed -i "s|wkhtmltopdf|wkhtmltopdf --enable-local-file-access|g" src/examdown.sh
           make -s checkdeps
           make -s build
         '';
