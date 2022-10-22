@@ -1,8 +1,8 @@
-{ lib, stdenv, fetchFromGitHub, getopt, cmark, wkhtmltopdf, gnused, makeWrapper }:
+{ lib, stdenv, fetchFromGitHub, getopt, cmark-gfm, wkhtmltopdf, gnused, makeWrapper }:
 let
   deps = [
     getopt
-    cmark
+    cmark-gfm
     wkhtmltopdf
     gnused
   ];
