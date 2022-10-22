@@ -1,4 +1,13 @@
-{ lib, stdenv, fetchFromGitHub, getopt, cmark-gfm, wkhtmltopdf, gnused, makeWrapper }:
+{ lib
+, stdenv
+, fetchFromGitHub
+, getopt
+, cmark-gfm
+, wkhtmltopdf
+, gnused
+, makeWrapper
+, runCommand
+}:
 let
   deps = [
     getopt
@@ -6,9 +15,6 @@ let
     wkhtmltopdf
     gnused
   ];
-in
-stdenv.mkDerivation {
-  name = "examdown";
   src = fetchFromGitHub {
     owner = "pldiiw";
     repo = "examdown";
@@ -16,18 +22,33 @@ stdenv.mkDerivation {
     sha256 = "sha256-Lbz9Xk5bNdcsgc0y/oBBnJOtDE1EtHOUcB3M3axabnI=";
     fetchSubmodules = true;
   };
-  buildPhase = ''
-    patchShebangs .
-    make -s checkdeps
-    make -s build
-  '';
-  installPhase = ''
-    mkdir $out
-    make -s install PREFIX=$out
-    wrapProgram $out/bin/examdown --prefix PATH : ${lib.makeBinPath deps}
-  '';
-  buildInputs = deps;
-  nativeBuildInputs = [
-    makeWrapper
-  ];
-}
+  examdown =
+    stdenv.mkDerivation
+      {
+        name = "examdown";
+        inherit src;
+        buildPhase = ''
+          patchShebangs .
+          sed -i 's/cmark/cmark-gfm/g' src/examdown.sh
+          sed -i "s|wkhtmltopdf|wkhtmltopdf --allow $out|g" src/examdown.sh
+          make -s checkdeps
+          make -s build
+        '';
+        installPhase = ''
+          mkdir $out
+          make -s install PREFIX=$out
+          wrapProgram $out/bin/examdown --prefix PATH : ${lib.makeBinPath deps}
+        '';
+        buildInputs = deps;
+        nativeBuildInputs = [
+          makeWrapper
+        ];
+        passthru.tests = {
+          simple = runCommand "test" { } ''
+            ${examdown}/bin/examdown -o out.pdf ${src}/test/test.md
+            cp out.pdf $out
+          '';
+        };
+      };
+in
+examdown
