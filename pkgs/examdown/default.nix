@@ -29,7 +29,7 @@ let
         inherit src;
         buildPhase = ''
           patchShebangs .
-          sed -i 's/cmark/cmark-gfm/g' src/examdown.sh
+          sed -i 's/cmark/cmark-gfm --unsafe/g' src/examdown.sh
           sed -i "s|wkhtmltopdf|wkhtmltopdf --enable-local-file-access|g" src/examdown.sh
           make -s checkdeps
           make -s build
