@@ -16,6 +16,8 @@
 
   bs = pkgs.callPackage ./pkgs/bs { };
   examdown = pkgs.callPackage ./pkgs/examdown { };
-  koboldcpp = pkgs.callPackage ./pkgs/koboldcpp { };
+  koboldcpp = pkgs.callPackage ./pkgs/koboldcpp {
+    clblast = pkgs.clblast or (pkgs.callPackage ./pkgs/clblast { });
+  };
   pcalc = pkgs.callPackage ./pkgs/pcalc { };
 }
