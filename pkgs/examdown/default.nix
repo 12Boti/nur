@@ -49,6 +49,7 @@ let
             cp out.pdf $out
           '';
         };
+        meta.broken = true; # depends on qtwebkit, which is insecure
       };
 in
 examdown
