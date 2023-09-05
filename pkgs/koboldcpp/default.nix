@@ -42,4 +42,5 @@ stdenv.mkDerivation {
       chmod +x $out/bin/$f
     done
   '';
+  NIX_CFLAGS_COMPILE = "-march=haswell";
 }
