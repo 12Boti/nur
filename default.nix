@@ -19,5 +19,6 @@
   koboldcpp = pkgs.callPackage ./pkgs/koboldcpp {
     clblast = pkgs.clblast or (pkgs.callPackage ./pkgs/clblast { });
   };
+  openvscode-server = pkgs.callPackage ./pkgs/openvscode-server { };
   pcalc = pkgs.callPackage ./pkgs/pcalc { };
 }
