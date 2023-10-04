@@ -1,4 +1,4 @@
-{ path, callPackage, fetchurl }:
+{ path, callPackage, fetchurl, krb5 }:
 let
   executableName = "openvscode-server";
   base =
@@ -20,7 +20,7 @@ let
       };
     };
 in
-base.overrideAttrs {
+base.overrideAttrs (old: {
   postPatch = "";
   installPhase = ''
     runHook preInstall
@@ -32,4 +32,5 @@ base.overrideAttrs {
     runHook postInstall
   '';
   postFixup = "";
-}
+  buildInputs = old.buildInputs ++ [ krb5 ];
+})
