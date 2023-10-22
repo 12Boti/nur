@@ -15,6 +15,7 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   bs = pkgs.callPackage ./pkgs/bs { };
+  cwe_checker = pkgs.callPackage ./pkgs/cwe_checker { };
   examdown = pkgs.callPackage ./pkgs/examdown { };
   koboldcpp = pkgs.callPackage ./pkgs/koboldcpp {
     clblast = pkgs.clblast or (pkgs.callPackage ./pkgs/clblast { });
