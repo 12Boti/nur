@@ -9,8 +9,8 @@
 , cudatoolkit
 }:
 let
-  version = "1.44.2";
-  hash = "sha256-Vwv7eL5FZgl2s8GgXYKcY5gnBKNfZ3mRoBJdoSuAgLo=";
+  version = "1.47.2";
+  hash = "sha256-odJ3hxMa8Qv3hlxQGoR07jGFc7kY7Mf13u1eQQrKmdA=";
   python = python3.withPackages (ps: with ps; [
     numpy
     sentencepiece
