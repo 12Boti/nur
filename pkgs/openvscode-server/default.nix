@@ -2,7 +2,7 @@
 let
   executableName = "openvscode-server";
   base =
-    callPackage (import "${path}/pkgs/applications/editors/vscode/generic.nix") rec {
+    callPackage (import (path + "/pkgs/applications/editors/vscode/generic.nix")) rec {
       version = "1.82.2";
       pname = "openvscode-server";
       src = fetchurl {
