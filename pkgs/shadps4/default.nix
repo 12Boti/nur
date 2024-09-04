@@ -10,7 +10,7 @@ let
   version = "0.2.0";
 in
 stdenv.mkDerivation {
-  pname = "shadPS4";
+  pname = "shadps4";
   inherit version;
   src = fetchgit {
     url = "https://github.com/shadps4-emu/shadPS4.git";
