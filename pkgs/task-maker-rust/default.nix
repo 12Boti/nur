@@ -16,7 +16,6 @@ let
     rev = "v${version}";
     hash = "sha256-DmiQghZ/Kjz9ln0P6B3JLJXsIPa0GFcSQTkAjjgSQcI=";
   };
-
 in
 rustPlatform.buildRustPackage {
   inherit pname version src;
@@ -29,7 +28,7 @@ rustPlatform.buildRustPackage {
     libseccomp
     makeWrapper
   ];
-  cargoLock.lockFile = src + "/Cargo.lock";
+  cargoLock.lockFile = ./Cargo.lock;
   cargoLock.outputHashes = {
     "typescript-definitions-0.1.10" = "sha256-6jYmi5yn4RWtkjktApgojaN31YPg1At3v6O6KZfAp3U=";
   };
